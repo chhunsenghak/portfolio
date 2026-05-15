@@ -20,6 +20,14 @@ export default function App() {
   const [toast, setToast] = useState(false);
   const [curBig, setCurBig] = useState(false);
   const [projFilter, setProjFilter] = useState("all");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   // framer-motion cursor: dot tracks exactly, ring lags via spring
   const curX = useMotionValue(-100);
@@ -81,18 +89,52 @@ export default function App() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ fontSize: "1.3rem", fontWeight: 700, color: C.text, letterSpacing: "-.02em" }}
+          style={{ fontSize: "1.3rem", fontWeight: 700, color: C.text, letterSpacing: "-.02em", flexShrink: 0 }}
         >
           &lt;CHHUN SENGHAK /&gt;
         </motion.div>
-        <div style={{ display: "flex", gap: 24 }}>
-          {["about", "skills", "projects", "experience", "education", "certifications", "contact"].map((id) => (
-            <span key={id} {...ip}>
-              <NavLink href={`#${id}`}>{id}</NavLink>
-            </span>
-          ))}
-        </div>
+
+        {/* Desktop links */}
+        {!isMobile && (
+          <div style={{ display: "flex", gap: 24 }}>
+            {["about", "skills", "projects", "experience", "education", "certifications", "contact"].map((id) => (
+              <span key={id} {...ip}>
+                <NavLink href={`#${id}`}>{id}</NavLink>
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Hamburger */}
+        {isMobile && (
+          <motion.button
+            onClick={() => setMenuOpen(o => !o)}
+            whileTap={{ scale: 0.9 }}
+            style={{ background: "transparent", border: `1px solid ${C.border}`, color: C.text, borderRadius: 8, width: 38, height: 38, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", fontSize: 18, flexShrink: 0 }}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </motion.button>
+        )}
       </nav>
+
+      {/* ── Mobile drawer ── */}
+      <AnimatePresence>
+        {isMobile && menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            style={{ position: "fixed", top: 57, left: 0, right: 0, zIndex: 99, background: `${C.bg}f8`, backdropFilter: "blur(16px)", borderBottom: `1px solid ${C.border}`, padding: "1.25rem 2rem", display: "flex", flexDirection: "column", gap: 20 }}
+          >
+            {["about", "skills", "projects", "experience", "education", "certifications", "contact"].map((id) => (
+              <span key={id} {...ip}>
+                <NavLink href={`#${id}`} mobile onClick={() => setMenuOpen(false)}>{id}</NavLink>
+              </span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── HERO ── */}
       <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6rem 2rem 3rem", position: "relative", overflow: "hidden", background: C.bg }}>
@@ -155,33 +197,33 @@ export default function App() {
           <Reveal><div style={S.secLabel}>Who I Am</div></Reveal>
           <Reveal><h2 style={S.secTitle}>About Me</h2></Reveal>
           <Reveal><div style={S.divider} /></Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
-            <Reveal dir="left">
-              <div style={{ position: "relative", width: 180, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr", gap: isMobile ? 32 : 48, alignItems: "center" }}>
+            <Reveal dir={isMobile ? "up" : "left"}>
+              <div style={{ position: "relative", width: 160, margin: "0 auto" }}>
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   style={{ position: "absolute", inset: -8, borderRadius: "50%", border: `1.5px dashed rgba(59,130,246,.3)` }}
                 />
-                <div style={{ width: 180, height: 180, borderRadius: "50%", background: `linear-gradient(135deg,${C.accent},${C.violet},${C.accent}88)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56, fontWeight: 700, color: "#fff", position: "relative", zIndex: 1 }}>
+                <div style={{ width: 160, height: 160, borderRadius: "50%", background: `linear-gradient(135deg,${C.accent},${C.violet},${C.accent}88)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 48, fontWeight: 700, color: "#fff", position: "relative", zIndex: 1 }}>
                   CS
                 </div>
               </div>
             </Reveal>
-            <Reveal dir="right">
-              <h3 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, letterSpacing: "-.02em" }}>CHHUN SENGHAK</h3>
+            <Reveal dir={isMobile ? "up" : "right"}>
+              <h3 style={{ fontSize: isMobile ? 20 : 24, fontWeight: 700, marginBottom: 8, letterSpacing: "-.02em", textAlign: isMobile ? "center" : "left" }}>CHHUN SENGHAK</h3>
               <p style={{ color: C.muted, lineHeight: 1.8, marginBottom: 12, fontSize: 15 }}>
                 I'm a passionate Web Developer with 2 years of experience crafting responsive, user-centric web applications. I specialize in turning complex problems into clean, elegant solutions.
               </p>
               <p style={{ color: C.muted, lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
                 When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and sharing what I learn with the community.
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24, justifyContent: isMobile ? "center" : "flex-start" }}>
                 {["Problem Solver", "Clean Code", "Adaptable", "Lifelong Learner", "Open Source"].map(t => (
                   <TagPill key={t} {...ip}>{t}</TagPill>
                 ))}
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 12 }}>
                 {[["2", "Years Exp."], ["5", "Projects"]].map(([n, l]) => (
                   <StatCard key={l} n={n} l={l} interactiveProps={ip} />
                 ))}
@@ -376,6 +418,11 @@ export default function App() {
         html { scroll-behavior: smooth; }
         ::placeholder { color: ${C.dim}; }
         textarea { font-family: inherit; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: ${C.bg}; }
+        ::-webkit-scrollbar-thumb { background: ${C.border}; border-radius: 3px; transition: background .2s; }
+        ::-webkit-scrollbar-thumb:hover { background: ${C.accent}; }
+        * { scrollbar-width: thin; scrollbar-color: ${C.border} ${C.bg}; }
       `}</style>
     </div>
   );

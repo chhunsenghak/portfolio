@@ -2,14 +2,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { C, ease } from "../styles/theme";
 
-export default function NavLink({ href, children }) {
+export default function NavLink({ href, children, mobile = false, onClick }) {
   const [h, setH] = useState(false);
 
   const st = {
     link: {
       color: h ? C.text : C.muted,
       textDecoration: "none",
-      fontSize: 14,
+      fontSize: mobile ? 17 : 14,
+      fontWeight: mobile ? 500 : 400,
       textTransform: "capitalize",
       position: "relative",
       paddingBottom: 4,
@@ -30,6 +31,7 @@ export default function NavLink({ href, children }) {
     <a
       href={href}
       style={st.link}
+      onClick={onClick}
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
     >
