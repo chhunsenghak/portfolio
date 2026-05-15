@@ -24,7 +24,11 @@ export default function SkillCard({ cat, color, items }) {
   return (
     <motion.div
       style={st.card}
-      whileHover={{ y: -4, borderColor: C.borderHov, boxShadow: "0 8px 24px rgba(0,0,0,.3)" }}
+      whileHover={{
+        y: -4,
+        borderColor: C.borderHov,
+        boxShadow: "0 8px 24px rgba(0,0,0,.3)",
+      }}
       transition={{ duration: 0.25 }}
     >
       <h4 style={st.catLabel}>{cat}</h4>

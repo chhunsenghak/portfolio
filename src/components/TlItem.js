@@ -6,12 +6,21 @@ export default function TlItem({ date, title, company, desc, delay }) {
   const [h, setH] = useState(false);
 
   const st = {
-    wrap:    { position: "relative", marginBottom: 40 },
-    dot:     { position: "absolute", left: -38, top: 5, width: 12, height: 12, borderRadius: "50%", background: C.accent, border: `2px solid ${C.bg}` },
-    date:    { fontSize: 12, color: C.gold, fontWeight: 600, marginBottom: 5 },
-    title:   { fontSize: 16, fontWeight: 600, marginBottom: 4, color: C.text },
+    wrap: { position: "relative", marginBottom: 40 },
+    dot: {
+      position: "absolute",
+      left: -38,
+      top: 5,
+      width: 12,
+      height: 12,
+      borderRadius: "50%",
+      background: C.accent,
+      border: `2px solid ${C.bg}`,
+    },
+    date: { fontSize: 12, color: C.gold, fontWeight: 600, marginBottom: 5 },
+    title: { fontSize: 16, fontWeight: 600, marginBottom: 4, color: C.text },
     company: { color: C.accent, fontSize: 14, marginBottom: 8 },
-    desc:    { color: C.muted, fontSize: 14, lineHeight: 1.75 },
+    desc: { color: C.muted, fontSize: 14, lineHeight: 1.75 },
   };
 
   return (
@@ -27,7 +36,10 @@ export default function TlItem({ date, title, company, desc, delay }) {
     >
       <motion.div
         style={st.dot}
-        animate={{ scale: h ? 1.6 : 1, boxShadow: h ? `0 0 10px ${C.accent}80` : "none" }}
+        animate={{
+          scale: h ? 1.6 : 1,
+          boxShadow: h ? `0 0 10px ${C.accent}80` : "none",
+        }}
         transition={{ duration: 0.25 }}
       />
       <div style={st.date}>{date}</div>

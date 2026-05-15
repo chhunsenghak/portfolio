@@ -11,8 +11,14 @@ export default function StatCard({ n, l, interactiveProps }) {
       padding: 16,
       textAlign: "center",
     },
-    num:   { fontSize: 30, fontWeight: 700, color: C.accent },
-    label: { fontSize: 11, color: C.dim, marginTop: 4, textTransform: "uppercase", letterSpacing: ".06em" },
+    num: { fontSize: 30, fontWeight: 700, color: C.accent },
+    label: {
+      fontSize: 11,
+      color: C.dim,
+      marginTop: 4,
+      textTransform: "uppercase",
+      letterSpacing: ".06em",
+    },
   };
 
   return (
@@ -22,7 +28,9 @@ export default function StatCard({ n, l, interactiveProps }) {
       transition={{ duration: 0.2 }}
       {...interactiveProps}
     >
-      <div style={st.num}><Counter target={+n} /></div>
+      <div style={st.num}>
+        <Counter target={+n} />
+      </div>
       <div style={st.label}>{l}</div>
     </motion.div>
   );

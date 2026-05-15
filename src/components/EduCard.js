@@ -13,21 +13,30 @@ export default function EduCard({ icon, title, school, year }) {
       alignItems: "flex-start",
     },
     iconWrap: {
-      width: 44, height: 44, borderRadius: 10,
+      width: 44,
+      height: 44,
+      borderRadius: 10,
       background: C.accentDim,
       border: "1px solid rgba(59,130,246,.2)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: 20, flexShrink: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 20,
+      flexShrink: 0,
     },
-    title:  { fontSize: 15, fontWeight: 600, marginBottom: 4, color: C.text },
+    title: { fontSize: 15, fontWeight: 600, marginBottom: 4, color: C.text },
     school: { color: C.accent, fontSize: 13, marginBottom: 4 },
-    year:   { color: C.dim, fontSize: 12 },
+    year: { color: C.dim, fontSize: 12 },
   };
 
   return (
     <motion.div
       style={st.card}
-      whileHover={{ y: -3, borderColor: C.borderHov, boxShadow: "0 8px 20px rgba(0,0,0,.25)" }}
+      whileHover={{
+        y: -3,
+        borderColor: C.borderHov,
+        boxShadow: "0 8px 20px rgba(0,0,0,.25)",
+      }}
       transition={{ duration: 0.25 }}
     >
       <motion.div

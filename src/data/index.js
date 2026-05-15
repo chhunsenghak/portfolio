@@ -47,18 +47,20 @@ export const skillsData = [
 
 export const projectsData = [
   {
-    badge: "Featured",
+    badge: "Company Project",
     type: "team",
-    title: "E-Commerce Platform",
+    title: "MG motor - Car",
     desc: "A full-featured shopping app with cart management, payment integration, and admin dashboard. Built collaboratively at Bikay.",
-    tags: ["React", "Tailwind", "Stripe", "Node.js"],
+    tags: ["PHP", "Wordpress", "JQuery", "SASS", "CSS"],
+    live: "https://mgmotor.com.kh/kh/",
   },
   {
-    badge: "Internal Tool",
+    badge: "Company Project",
     type: "team",
-    title: "Admin Dashboard",
+    title: "ECCC",
     desc: "Comprehensive internal dashboard for managing users, orders, and analytics with role-based access control.",
-    tags: ["Vue.js", "Laravel", "MySQL", "REST API"],
+    tags: ["Next.js", "TailwindCSS", "... "],
+    live: "https://www.eccc.gov.kh/"
   },
   {
     badge: "Open Source",
@@ -66,6 +68,8 @@ export const projectsData = [
     title: "Task Manager App",
     desc: "A productivity tool with drag-and-drop boards, real-time updates, and team collaboration features.",
     tags: ["React", "TypeScript", "Firebase"],
+    live: "https://pos-senghaks-projects.vercel.app/",
+    github: "https://github.com/chhunsenghak/POS",
   },
   {
     badge: "UI/UX",
@@ -73,6 +77,8 @@ export const projectsData = [
     title: "Portfolio Website",
     desc: "A sleek personal portfolio with smooth animations, responsive design, and a contact form.",
     tags: ["React", "CSS", "Framer Motion"],
+    live: "https://pos-senghaks-projects.vercel.app/",
+    github: "https://github.com/chhunsenghak/POS",
   },
   {
     badge: "Side Project",
@@ -80,6 +86,17 @@ export const projectsData = [
     title: "Weather App",
     desc: "Clean weather application with location-based forecasts, animated icons, and 7-day predictions.",
     tags: ["React", "OpenWeather API", "CSS"],
+    live: "https://pos-senghaks-projects.vercel.app/",
+    github: "https://github.com/chhunsenghak/POS",
+  },
+  {
+    badge: "Frontend",
+    type: "personal",
+    title: "POS App",
+    desc: "Basic POS practice project for second-year students at PNC. It uses LocalStorage to store data.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    live: "https://pos-senghaks-projects.vercel.app/",
+    github: "https://github.com/chhunsenghak/POS",
   },
 ];
 

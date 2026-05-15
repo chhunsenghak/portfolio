@@ -18,5 +18,10 @@ export default function Counter({ target }) {
     return () => clearInterval(t);
   }, [inView, target]);
 
-  return <span ref={ref}>{val}{val >= target ? "+" : ""}</span>;
+  return (
+    <span ref={ref}>
+      {val}
+      {val >= target ? "+" : ""}
+    </span>
+  );
 }

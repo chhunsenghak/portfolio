@@ -7,11 +7,21 @@ export default function SkillBar({ label, pct, color = C.accent }) {
   const inView = useInView(ref, { once: true });
 
   const st = {
-    wrap:   { marginBottom: 14 },
-    header: { display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 5 },
-    label:  { color: C.text },
-    value:  { color: C.dim },
-    track:  { height: 4, background: "rgba(255,255,255,.06)", borderRadius: 3, overflow: "hidden" },
+    wrap: { marginBottom: 14 },
+    header: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 13,
+      marginBottom: 5,
+    },
+    label: { color: C.text },
+    value: { color: C.dim },
+    track: {
+      height: 4,
+      background: "rgba(255,255,255,.06)",
+      borderRadius: 3,
+      overflow: "hidden",
+    },
   };
 
   return (

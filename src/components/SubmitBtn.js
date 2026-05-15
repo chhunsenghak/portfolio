@@ -20,7 +20,11 @@ export default function SubmitBtn({ onClick, interactiveProps }) {
     <motion.button
       onClick={onClick}
       style={st.btn}
-      whileHover={{ y: -2, background: C.accentHov, boxShadow: "0 8px 24px rgba(59,130,246,.35)" }}
+      whileHover={{
+        y: -2,
+        background: C.accentHov,
+        boxShadow: "0 8px 24px rgba(59,130,246,.35)",
+      }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
       {...interactiveProps}
